@@ -26,7 +26,8 @@ class AppTest {
     void takeTestForWrong1() {
         List<Integer> elements = new ArrayList<>(Arrays.asList());
         List<Integer> list = Implementations.wrong1(elements, 4);
-        assertThat(list.size()).isEqualTo(0);
+        assertThat(list.size()).isEqualTo(1);
+        assertThat(list.get(0)).isEqualTo(0);
     }
 
     @Test
@@ -38,7 +39,8 @@ class AppTest {
         assertThat(list.get(2)).isEqualTo(7);
         assertThat(list.get(3)).isEqualTo(5);
         assertThat(list.get(4)).isEqualTo(2);
-        assertThat(list.size()).isEqualTo(5);
+        assertThat(list.get(5)).isEqualTo(100);
+        assertThat(list.size()).isEqualTo(6);
 
     }
 
@@ -51,7 +53,8 @@ class AppTest {
         assertThat(list.get(2)).isEqualTo(7);
         assertThat(list.get(3)).isEqualTo(5);
         assertThat(list.get(4)).isEqualTo(2);
-        assertThat(list.size()).isEqualTo(5);
+        assertThat(list.get(5)).isEqualTo(10);
+        assertThat(list.size()).isEqualTo(6);
     }
 
     @Test
@@ -62,6 +65,7 @@ class AppTest {
         assertThat(list.get(1)).isEqualTo(3);
         assertThat(list.get(2)).isEqualTo(7);
         assertThat(list.get(3)).isEqualTo(5);
-        assertThat(list.size()).isEqualTo(4);
+        assertThat(list.get(4)).isEqualTo(10);
+        assertThat(list.size()).isEqualTo(5);
     }
 }
