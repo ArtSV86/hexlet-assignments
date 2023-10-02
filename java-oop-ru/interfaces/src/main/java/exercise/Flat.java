@@ -22,18 +22,19 @@ public class Flat implements Home {
 
     @Override
     public int compareTo(Home another) {
-        if (getArea() > another.getArea()) {
+        double thisArea = this.getArea();
+        double otherArea = another.getArea();
+        if (thisArea > otherArea) {
             return 1;
-        } else if (getArea() > another.getArea()) {
+        } else if (thisArea < otherArea) {
             return -1;
         } else {
             return 0;
         }
     }
 
-    public static String toString(Flat flat) {
-        String infoObject = "Квартира площадью " + flat.getArea() + " метров на " + flat.floor + " этаже";
-        return infoObject;
+    public String toString() {
+        return "Квартира площадью " + String.valueOf(getArea()) + " метров на " + String.valueOf(floor) + " этаже";
 
     }
 }

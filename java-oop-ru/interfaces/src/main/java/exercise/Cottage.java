@@ -20,18 +20,19 @@ public class Cottage implements Home {
 
     @Override
     public int compareTo(Home another) {
-        if (getArea() > another.getArea()) {
+        double thisArea = this.getArea();
+        double otherArea = another.getArea();
+        if (thisArea > otherArea) {
             return 1;
-        } else if (getArea() > another.getArea()) {
+        } else if (thisArea < otherArea) {
             return -1;
         } else {
             return 0;
         }
     }
 
-    public static String toString(Cottage cottage) {
-        String infoObject =cottage.floorCount + " этажный коттедж площадью " + cottage.getArea() + " метров";
-        return infoObject;
+    public String toString() {
+        return String.valueOf(floorCount) + " этажный коттедж площадью " + String.valueOf(getArea()) + " метров";
 
     }
 }
