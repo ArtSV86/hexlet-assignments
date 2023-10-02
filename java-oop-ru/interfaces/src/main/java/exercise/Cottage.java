@@ -5,7 +5,7 @@ public class Cottage implements Home {
     private double area;
    private int floorCount;
 
-    Cottage cottage = new Cottage(area, floorCount);
+//    Cottage cottage = new Cottage(area, floorCount);
 
     public Cottage(double area, int floorCount) {
         this.area = area;
@@ -20,9 +20,9 @@ public class Cottage implements Home {
 
     @Override
     public int compareTo(Home another) {
-        if (cottage.getArea() > another.getArea()) {
+        if (getArea() > another.getArea()) {
             return 1;
-        } else if (cottage.getArea() > another.getArea()) {
+        } else if (getArea() > another.getArea()) {
             return -1;
         } else {
             return 0;

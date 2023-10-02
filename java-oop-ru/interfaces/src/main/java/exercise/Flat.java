@@ -6,7 +6,7 @@ public class Flat implements Home {
     private double balconyArea;
     private int floor;
 
-    Flat flat = new Flat(area, balconyArea, floor);
+//    Flat flat = new Flat(area, balconyArea, floor);
 
     public Flat(double area, double balconyArea, int floor) {
         this.area = area;
@@ -22,9 +22,9 @@ public class Flat implements Home {
 
     @Override
     public int compareTo(Home another) {
-        if (flat.getArea() > another.getArea()) {
+        if (getArea() > another.getArea()) {
             return 1;
-        } else if (flat.getArea() > another.getArea()) {
+        } else if (getArea() > another.getArea()) {
             return -1;
         } else {
             return 0;
