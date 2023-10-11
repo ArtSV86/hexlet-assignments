@@ -1,15 +1,19 @@
 package exercise;
 
 import java.util.HashMap;
+
 import org.junit.jupiter.api.BeforeEach;
+
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
-import com.fasterxml.jackson.databind.ObjectMapper;
-// BEGIN
+import java.util.Map;
 
-// END
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 
 class FileKVTest {
@@ -24,6 +28,11 @@ class FileKVTest {
     }
 
     // BEGIN
-    
-    // END
+    @Test
+    void TestFile() {
+
+        KeyValueStorage storage = new FileKV("src/test/resources/file", Map.of("key", "value"));
+//        storage.get("key", "default");
+        assertThat(storage.get("key", "default")).isEqualTo("value");
+    }
 }

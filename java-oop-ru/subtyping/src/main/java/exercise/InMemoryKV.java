@@ -6,7 +6,6 @@ import java.util.HashMap;
 // BEGIN
 public class InMemoryKV implements KeyValueStorage {
     private Map<String, String> mainStorage;
-    private String value;
 
     @Override
     public void set(String key, String value) {
