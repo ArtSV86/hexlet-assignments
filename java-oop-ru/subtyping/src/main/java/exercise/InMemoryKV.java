@@ -5,22 +5,22 @@ import java.util.HashMap;
 
 // BEGIN
 public class InMemoryKV implements KeyValueStorage {
-    Map<String, String> data;
-    String value;
+    private Map<String, String> mainStorage;
+    private String value;
 
     @Override
     public void set(String key, String value) {
-        this.data.put(key, value);
+        this.mainStorage.put(key, value);
     }
 
     @Override
     public void unset(String key) {
-        data.remove(key);
+        mainStorage.remove(key);
     }
 
     @Override
     public String get(String key, String defaultValue) {
-        return value = (data.containsKey(key)) ? data.get(key) : defaultValue;
+        return mainStorage.getOrDefault(key, defaultValue);
     }
 
     @Override
@@ -29,11 +29,11 @@ public class InMemoryKV implements KeyValueStorage {
 //        return data;
 //    }
     public Map<String, String> toMap() {
-        return data;
+        return new HashMap<>(mainStorage);
     }
 
-    public InMemoryKV(Map<String, String> storage) {
-        this.data = new HashMap<>(storage);
+    public InMemoryKV(Map<String, String> mainStorage) {
+        this.mainStorage = new HashMap<>(mainStorage);
     }
 }
 // END
