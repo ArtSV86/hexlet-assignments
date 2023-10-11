@@ -23,6 +23,8 @@ public class FileKV implements KeyValueStorage {
     public Map<String, String> toMap() {
         return null;
     }
-    public FileKV (String filePath, Map<String, String> map)
+    public FileKV (String filePath, Map<String, String> map) {
+
+    }
 }
 // END
