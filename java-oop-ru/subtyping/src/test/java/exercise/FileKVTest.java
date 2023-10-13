@@ -29,7 +29,7 @@ class FileKVTest {
 
     // BEGIN
     @Test
-    void TestFile() {
+    void fileTestKV() {
 
         KeyValueStorage storage = new FileKV("src/test/resources/file", Map.of("key", "value"));
 //        storage.get("key", "default");
