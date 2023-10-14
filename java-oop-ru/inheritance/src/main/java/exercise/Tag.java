@@ -7,33 +7,31 @@ import java.util.Map;
 
 // BEGIN
 public class Tag {
-    private String tagName;
-    private String key;
-    private String value;
-    private String body;
+    private final String tag;
+    private final Map<String, String> attributes;
 
-//public Tag (String tagName, Map<String, String> attribute) {
-//    this.tagName = tagName;
-//
-//    Set<Map.Entry<String, String>> entries = attribute.entrySet();
-//    entries.stream().forEach(item -> {
-//        this.key = item.getKey();
-//        this.value = item.getValue();
-//    });
-//}
-//public Tag(String tagName, Map<String, String> attribute, String body, List<SingleTag> tag) {
-//    this.tagName = tagName;
-//    Set<Map.Entry<String, String>> entries = attribute.entrySet();
-//    entries.stream().forEach(item -> {
-//        this.key = item.getKey();
-//        this.value = item.getValue();
-//        this.attribute.put(this.key,this.value);
-//    });
-//    this.body = body;
-//    tag.stream().forEach(map -> {
-//
-//    });
-//
-//}
+    public Tag(String tag, Map<String, String> attributes) {
+        this.tag = tag;
+        this.attributes = attributes;
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public String stringifyAttributes() {
+        Set<Map.Entry<String, String>> setAttributes = attributes.entrySet();
+
+        StringBuilder stringAttributes = new StringBuilder();
+        setAttributes.forEach(item -> {
+            stringAttributes.append(" ");
+            stringAttributes.append(item.getKey());
+            stringAttributes.append("=\"");
+            stringAttributes.append(item.getValue());
+            stringAttributes.append("\"");
+        });
+
+        return stringAttributes.toString();
+    }
 }
 // END

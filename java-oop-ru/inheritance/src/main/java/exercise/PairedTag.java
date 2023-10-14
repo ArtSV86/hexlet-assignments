@@ -13,23 +13,26 @@ public class PairedTag extends Tag {
     private String value;
     private String body;
 
+    public PairedTag(String tag, Map<String, String> attributes) {
+        super(tag, attributes);
+    }
 
-    public PairedTag(String tagName, Map<String, String> attribute, String body, List<SingleTag> tag) {
+    @Override
+    public void getTag(String tagName, Map<String, String> attribute, String body, List<SingleTag> tag) {
+        super.getTag();
         this.tagName = tagName;
         Set<Map.Entry<String, String>> entries = attribute.entrySet();
         entries.stream().forEach(item -> {
             this.key = item.getKey();
             this.value = item.getValue();
-            this.attribute.put(this.key,this.value);
+            this.attribute.put(this.key, this.value);
         });
         this.body = body;
-        tag.stream().forEach(map -> {
 
+
+        public String toString () {
+            String result = "<" + tagName + " " + key + "=" + '"' + value + '"' + ">" +
+            return result;
+        }
     }
-    }
-    public String toString() {
-        String result = "<" + tagName + " " + key + "=" + '"' + value + '"' + ">" +
-        return result;
-    }
-}
 // END

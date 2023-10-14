@@ -6,12 +6,14 @@ import java.util.Map;
 import java.util.Set;
 
 // BEGIN
-public  class SingleTag extends Tag {
+public class SingleTag extends Tag {
     private String tagName;
     private String key;
     private String value;
 
-    public SingleTag(String tagName, Map<String, String> attribute) {
+    @Override
+    public void getTag(String tagName, Map<String, String> attribute) {
+        super.getTag();
 
         this.tagName = tagName;
 
@@ -20,6 +22,10 @@ public  class SingleTag extends Tag {
             this.key = item.getKey();
             this.value = item.getValue();
         });
+    }
+
+    public SingleTag(String tag, Map<String, String> attributes) {
+        super(tag, attributes);
     }
 
     public String toString() {
