@@ -6,7 +6,7 @@ public class App {
         if (circle.getRadius() < 0) {
             throw new NegativeRadiusException("Не удалось посчитать площадь\nВычисление окончено");
         }
-        System.out.println(circle.getSquare() + "\nВычисление окончено");
+        System.out.println((int) circle.getSquare() + "\nВычисление окончено");
     }
 }
 // END
