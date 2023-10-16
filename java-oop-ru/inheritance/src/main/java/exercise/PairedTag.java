@@ -6,33 +6,52 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 // BEGIN
-public class PairedTag extends Tag {
-    private String tagName;
-    Map<String, String> attribute;
-    private String key;
-    private String value;
-    private String body;
+//public class PairedTag extends Tag {
+//    private String tagName;
+//    Map<String, String> attribute;
+//    private String key;
+//    private String value;
+//    private String body;
+//
+//    public PairedTag(String tag, Map<String, String> attributes) {
+//        super(tag, attributes);
+//    }
+//
+//    @Override
+//    public void getTag(String tagName, Map<String, String> attribute, String body, List<SingleTag> tag) {
+//        super.getTag();
+//        this.tagName = tagName;
+//        Set<Map.Entry<String, String>> entries = attribute.entrySet();
+//        entries.stream().forEach(item -> {
+//            this.key = item.getKey();
+//            this.value = item.getValue();
+//            this.attribute.put(this.key, this.value);
+//        });
+//        this.body = body;
+//
+//
+//        public String toString () {
+//            String result = "<" + tagName + " " + key + "=" + '"' + value + '"' + ">" +
+//            return result;
+//        }
 
-    public PairedTag(String tag, Map<String, String> attributes) {
-        super(tag, attributes);
-    }
+        public class PairedTag extends Tag {
 
-    @Override
-    public void getTag(String tagName, Map<String, String> attribute, String body, List<SingleTag> tag) {
-        super.getTag();
-        this.tagName = tagName;
-        Set<Map.Entry<String, String>> entries = attribute.entrySet();
-        entries.stream().forEach(item -> {
-            this.key = item.getKey();
-            this.value = item.getValue();
-            this.attribute.put(this.key, this.value);
-        });
-        this.body = body;
+            private final String body;
+            private final List<Tag> child;
 
+            public PairedTag(String tag, Map<String, String> attributes, String body, List<Tag> child) {
+                super(tag, attributes);
+                this.body = body;
+                this.child = child;
+            }
 
-        public String toString () {
-            String result = "<" + tagName + " " + key + "=" + '"' + value + '"' + ">" +
-            return result;
+            @Override
+            public String toString() {
+                return "<" + super.getTag() + super.stringifyAttributes() + ">"+ body + child + "<" + '/' + super.getTag() + ">";
+            }
         }
-    }
+
+
+
 // END
