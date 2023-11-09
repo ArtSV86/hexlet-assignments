@@ -3,23 +3,36 @@ package exercise;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
+import java.io.PrintWriter;
 import java.nio.file.Path;
 import java.nio.file.Files;
 import java.nio.file.StandardOpenOption;
 
 // BEGIN
 public class App {
-    public static void save(Path path, Car car) throws JsonProcessingException {
-    String stringJson = Car.serialize(car);
+    public static void save(Path filePath, Car instance) throws Exception {
+//    String stringJson = Car.serialize(car);
+//        PrintWriter out;
+//        try{
+//            out = new PrintWriter(new FileOutputStream(path.toFile()), true);
+//            out.println(stringJson);
+//            out.flush();
+//            out.close();
+//        }catch (Exception e) {
+//            e.printStackTrace();
+//        }
+
+        String jsonRepresentation = Car.serialize(instance);
+        Files.writeString(filePath, jsonRepresentation, StandardOpenOption.WRITE);
     }
 
-    public static Car extract(Path path, Car car) {
-        FileInputStream fileInputStream = new FileInputStream(path);
-        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+    public static Car extract(Path filePath) throws Exception {
 
-         = () objectInputStream.readObject();
-
+        String jsonRepresentation = Files.readString(filePath);
+        Car instance = Car.unserialize(jsonRepresentation);
+        return instance;
         }
 }
 // END
