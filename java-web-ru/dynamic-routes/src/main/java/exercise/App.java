@@ -23,20 +23,18 @@ public final class App {
 
         // BEGIN
         app.get("/companies/{id}", ctx -> {
-            var companyNumber = ctx.pathParamAsClass("id", Integer.class);
+            var id = ctx.pathParam("id");
+            Map<String, String> company = COMPANIES.stream()
+                    .filter(c -> c.get("id").equals(id))
+                    .findFirst()
+                    .orElse(null);
 
-            if (companyNumber < 0) {
+            if (company == null) {
                 throw new NotFoundResponse("Company not found");
             }
-            var companyInfo = new HashMap<String, String>();
-              for (var company : COMPANIES) {
-              if (company.get(companyNumber).equals("id")) {
-                  companyInfo = new HashMap<String, String>(company);
-              }
-              }
-            ctx.result(companyInfo);
-        });
 
+            ctx.json(company);
+        });
         // END
 
         app.get("/companies", ctx -> {
