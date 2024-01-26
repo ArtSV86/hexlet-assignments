@@ -22,14 +22,26 @@ public final class App {
         // BEGIN
         app.get("/users", ctx -> {
             var users = new UsersPage(USERS);
-            ctx.render("users/index.jte", Collections.singletonMap("users", users));
+            if (users == null) {
+                throw new NotFoundResponse("User not found");
+            }
+            ctx.render("users/index.jte", Collections.singletonMap("pages", users));
+
         });
 
         app.get("/users/{id}", ctx -> {
-            var id = ctx.pathParam("id");
-            var users = new UsersPage(USERS);
-            var user = new UserPage(users.getUsers(id));
-            ctx.render("users/show.jte", Collections.singletonMap("user", user));
+            var id = ctx.pathParamAsClass("id", Long.class).get();
+            User user = USERS.stream()
+                    .filter(u -> id.equals(u.getId()))
+                    .findFirst()
+                    .orElse(null);
+
+            if (user == null) {
+                throw new NotFoundResponse("User not found");
+            }
+
+            var page = new UserPage(user);
+            ctx.render("users/show.jte", Collections.singletonMap("page", page));
         });
         // END
 
