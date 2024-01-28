@@ -21,11 +21,8 @@ public final class App {
 
         // BEGIN
         app.get("/users", ctx -> {
-            var users = new UsersPage(USERS);
-            if (users == null) {
-                throw new NotFoundResponse("User not found");
-            }
-            ctx.render("users/index.jte", Collections.singletonMap("pages", users));
+            var page = new UsersPage(USERS);
+            ctx.render("users/index.jte", Collections.singletonMap("page", page));
 
         });
 

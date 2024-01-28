@@ -1,5 +1,5 @@
 @import main.java.exercise.dto.courses.UserPage
-@param UserPage user
+@param UserPage page
 
 <html lang="en">
   <head>
@@ -14,19 +14,7 @@
     <body>
         <div class="mx-auto p-4 py-md-5">
         <main>
-            <h1>Пользователь</h1>
-            <table class="table table-striped">
-                @for(var user : page.getUsers())
-                    <tr>
-                        <td>
-                            ${USERS}
-                        </td>
-                        <td>
-                            <a href="/users"></a>
-                        </td>
-                    </tr>
-                @endfor
-            </table>
+                <h2>${page.getUser().getFirstName()} ${page.getUser().getLastName()} ${page.getUser().getEmail()} ${page.getUser().getId()}</h2>
         </main>
         </div>
     </body>
