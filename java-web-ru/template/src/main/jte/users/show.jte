@@ -1,4 +1,4 @@
-@import main.java.exercise.dto.courses.UserPage
+@import exercise.dto.users.UserPage
 @param UserPage page
 
 <html lang="en">
