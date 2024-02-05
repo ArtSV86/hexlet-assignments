@@ -23,15 +23,20 @@ public final class App {
         // BEGIN
         app.get("/users", ctx -> {
             var term = ctx.queryParam("term");
-            List<User> users = new ArrayList<>();
-            // Фильтруем, только если была отправлена форма
-            if (term != null) {
-                users = USERS.stream() /* Фильтруем курсы по term */
-                        .filter(u -> term.equals(u.getFirstName()))
+            List<User> users;
+
+            if (term == null) {
+                users = USERS;
+            } else {
+
+                users = USERS.stream()
+                        .filter(u -> {
+                            return StringUtils.startsWithIgnoreCase(u.getFirstName(), term);
+                        })
                         .toList();
             }
 
-            var page = new UsersPage(users);
+            var page = new UsersPage(users, term);
             ctx.render("users/index.jte", Collections.singletonMap("page", page));
         });
         // END
