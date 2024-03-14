@@ -1,0 +1,12 @@
+# BEGIN
+spring:
+  config:
+    activate:
+      on-profile: development
+  datasource:
+    password: 123
+    url: jdbc:h2:mem:test
+    username: sa
+bael:
+  property: developmentValue
+# END
